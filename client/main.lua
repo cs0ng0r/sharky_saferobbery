@@ -72,7 +72,7 @@ Citizen.CreateThread(function()
                                 "machinic_loop_mechandplayer", 8.0, 8.0, -1, 1, 0, 0, 0, 0)
 
                             FreezeEntityPosition(cache.ped, true)
-                            
+
                             local success = lib.skillCheck(v.Difficulty)
 
                             if success then

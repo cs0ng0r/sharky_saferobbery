@@ -13,7 +13,7 @@ Config['jobs'] = {
 
 Config['Safes'] = {
     {
-        Coords = vector3(415.1207, -806.5060, 28.3435), -- coords for the prop
+        Coords = vector4(236.4954, -879.6640, 29.4921, 153.0743), -- coords for the prop
         Prop = 'prop_ld_int_safe_01',                   -- prop you want to spawn
         RequiredItem = false,                           -- item name or false
         Reward = {
@@ -31,7 +31,7 @@ Config['Safes'] = {
         }
     },
     {
-        Coords = vector3(245.0282, -879.5576, 29.4882), -- coords for the prop
+        Coords = vector4(244.8379, -881.9498, 29.4921, 235.2097), -- coords for the prop
         Prop = 'prop_ld_int_safe_01',                   -- prop you want to spawn
         RequiredItem = false,                           -- item name or false
         Reward = {
