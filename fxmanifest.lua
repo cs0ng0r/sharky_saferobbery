@@ -20,4 +20,8 @@ server_scripts {
 
 files {
     'locales/*.json'
-  }
+}
+
+escrow_ignore 'locales/*.json'
+escrow_ignore 'shared/*.lua'
+escrow_ignore 'server/logs.lua'

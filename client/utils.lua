@@ -1,6 +1,6 @@
 function DevPrint(msg)
     if Config['debug'] then
-        print(msg)
+        lib.print.info(msg)
     end
 end
 
@@ -42,4 +42,3 @@ function TextUI(text)
         lib.print.error("Invalid textui")
     end
 end
-

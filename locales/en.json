@@ -5,5 +5,6 @@
     "crack_success": "Successful crack! The contents of the safe: $%d",
     "crack_failed": "Failed crack!",
     "item_needed": "You need a %s item to crack the safe!",
-    "safe_on_cooldown": "The safe was recently looted! Wait %d seconds!"
+    "safe_on_cooldown": "The safe was recently looted! Wait %d seconds!",
+    "robbery_started": "Robbery Started!"
 }

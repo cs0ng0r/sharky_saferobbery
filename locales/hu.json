@@ -5,5 +5,8 @@
     "crack_success": "Sikeres feltörés! A széf tartalma: $%d",
     "crack_failed": "Sikertelen feltörés! ",
     "item_needed": "Szükséged van egy %s tárgyra a feltöréshez!",
-    "safe_on_cooldown": "A széf nemrég lett kirabolva! Várj %d másodpercet!"
+    "safe_on_cooldown": "A széf nemrég lett kirabolva! Várj %d másodpercet!",
+    "robbery_started": "Rablás van folyamatban!",
+    "blipName" : "Széfrablás",
+    "already_robbing" : "Már rabolják ezt a széfet!"
 }
