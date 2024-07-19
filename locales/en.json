@@ -1,0 +1,7 @@
+{
+    "crack_safe": "~INPUT_CONTEXT~ - Crack safe",
+    "crack_safe_target": "Crack safe",
+    "crack_success": "Successful crack! Safe content: $%d",
+    "crack_failed": "Crack failed!",
+    "item_needed": "You need a %s item to crack the safe!"
+}
