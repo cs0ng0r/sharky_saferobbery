@@ -1,6 +1,7 @@
 {
     "crack_safe": "~INPUT_CONTEXT~ - Széf feltörése",
     "crack_safe_target": "Széf feltörése",
+    "looting_safe": "Széf kifosztása...",
     "crack_success": "Sikeres feltörés! A széf tartalma: $%d",
     "crack_failed": "Sikertelen feltörés! ",
     "item_needed": "Szükséged van egy %s tárgyra a feltöréshez!",

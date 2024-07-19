@@ -25,7 +25,7 @@ Citizen.CreateThread(function()
                     if IsControlJustReleased(0, 38) then
                         local currentTime = GetGameTimer()
                         if safesCooldown[k] and currentTime < safesCooldown[k] then
-                            Notify(locale('safe_on_cooldown'))
+                            Notify(locale('safe_on_cooldown', math.ceil((safesCooldown[k] - currentTime) / 1000)))
                             return
                         end
 
@@ -67,11 +67,12 @@ Citizen.CreateThread(function()
                             end
                         else
                             lib.requestAnimDict("anim@amb@clubhouse@tutorial@bkr_tut_ig3@", 100)
-
+                            SetEntityCoords(cache.ped, v.Coords.x, v.Coords.y - 1.0, v.Coords.z, 1, 0, 0, 1)
                             TaskPlayAnim(cache.ped, "anim@amb@clubhouse@tutorial@bkr_tut_ig3@",
                                 "machinic_loop_mechandplayer", 8.0, 8.0, -1, 1, 0, 0, 0, 0)
 
                             FreezeEntityPosition(cache.ped, true)
+                            
                             local success = lib.skillCheck(v.Difficulty)
 
                             if success then
@@ -91,11 +92,11 @@ Citizen.CreateThread(function()
                                     end, reward)
                                     ClearPedTasks(cache.ped)
                                     FreezeEntityPosition(cache.ped, false)
-                                else
-                                    Notify(locale('crack_failed'))
-                                    ClearPedTasks(cache.ped)
-                                    FreezeEntityPosition(cache.ped, false)
                                 end
+                            else
+                                Notify(locale('crack_failed'))
+                                ClearPedTasks(cache.ped)
+                                FreezeEntityPosition(cache.ped, false)
                             end
                         end
                     end

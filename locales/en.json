@@ -1,7 +1,9 @@
 {
-    "crack_safe": "~INPUT_CONTEXT~ - Crack safe",
-    "crack_safe_target": "Crack safe",
-    "crack_success": "Successful crack! Safe content: $%d",
-    "crack_failed": "Crack failed!",
-    "item_needed": "You need a %s item to crack the safe!"
+    "crack_safe": "Cracking the safe",
+    "crack_safe_target": "Cracking the safe",
+    "looting_safe": "Looting the safe...",
+    "crack_success": "Successful crack! The contents of the safe: $%d",
+    "crack_failed": "Failed crack!",
+    "item_needed": "You need a %s item to crack the safe!",
+    "safe_on_cooldown": "The safe was recently looted! Wait %d seconds!"
 }

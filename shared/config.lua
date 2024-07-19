@@ -22,7 +22,25 @@ Config['Safes'] = {
         },
         Difficulty = { "easy", "easy", "medium" },      -- easy, medium, hard
         LootTime = 10,                                  -- time to loot the safe
-        Cooldown = 0,                                   -- cooldown in seconds
+        Cooldown = 60,                                   -- cooldown in seconds
+        Blip = {
+            enable = true,
+            sprite = 303,
+            color = 1,
+            name = 'Safe',
+        }
+    },
+    {
+        Coords = vector3(245.0282, -879.5576, 29.4882), -- coords for the prop
+        Prop = 'prop_ld_int_safe_01',                   -- prop you want to spawn
+        RequiredItem = false,                           -- item name or false
+        Reward = {
+            min = 1000,                                 -- min reward
+            max = 2000,                                 -- max reward
+        },
+        Difficulty = { "easy", "easy", "medium" },      -- easy, medium, hard
+        LootTime = 10,                                  -- time to loot the safe
+        Cooldown = 60,                                   -- cooldown in seconds
         Blip = {
             enable = true,
             sprite = 303,
