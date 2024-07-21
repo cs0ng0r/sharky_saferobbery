@@ -29,11 +29,18 @@ Citizen.CreateThread(function()
                             return
                         end
 
+                        local policeNotified = false
+
                         if v.RequiredItem then
                             ESX.TriggerServerCallback('sharky_saferobbery:server:canRobSafe', function(canRob)
                                 if canRob then
                                     local RobberyCoords = vec3(v.Coords.x, v.Coords.y, v.Coords.z)
-                                    TriggerServerEvent('sharky_saferobbery:server:policeNotify', RobberyCoords)
+                                    
+                                    if not policeNotified then
+                                        TriggerServerEvent('sharky_saferobbery:server:policeNotify', RobberyCoords)
+                                        policeNotified = true
+                                    end
+
                                     lib.requestAnimDict("anim@amb@clubhouse@tutorial@bkr_tut_ig3@", 100)
                                     SetEntityCoords(cache.ped, v.Coords.x, v.Coords.y - 1.0, v.Coords.z, 1, 0, 0, 1)
                                     TaskPlayAnim(cache.ped, "anim@amb@clubhouse@tutorial@bkr_tut_ig3@",
@@ -61,6 +68,7 @@ Citizen.CreateThread(function()
                                                     safesCooldown[k] = GetGameTimer() +
                                                         v.Cooldown *
                                                         1000 -- Update cooldown
+                                                    TriggerServerEvent('sharky_saferobbery:server:setSafeCooldown', k) -- Notify server to reset cooldown
                                                 end, reward)
                                             ClearPedTasks(cache.ped)
                                             FreezeEntityPosition(cache.ped, false)
@@ -69,6 +77,8 @@ Citizen.CreateThread(function()
                                         Notify(locale('crack_failed'))
                                         ClearPedTasks(cache.ped)
                                         FreezeEntityPosition(cache.ped, false)
+                                        safesCooldown[k] = GetGameTimer() + v.Cooldown * 1000 -- Start cooldown immediately on fail
+                                        TriggerServerEvent('sharky_saferobbery:server:setSafeCooldown', k) -- Notify server to set cooldown
                                     end
                                 else
                                     Notify(locale('safe_on_cooldown', v.Cooldown))
@@ -78,11 +88,15 @@ Citizen.CreateThread(function()
                             ESX.TriggerServerCallback('sharky_saferobbery:server:canRobSafe', function(canRob)
                                 if canRob then
                                     local RobberyCoords = vec3(v.Coords.x, v.Coords.y, v.Coords.z)
-                                    TriggerServerEvent('sharky_saferobbery:server:policeNotify', RobberyCoords)
+                                    
+                                    if not policeNotified then
+                                        TriggerServerEvent('sharky_saferobbery:server:policeNotify', RobberyCoords)
+                                        policeNotified = true
+                                    end
+
                                     lib.requestAnimDict("anim@amb@clubhouse@tutorial@bkr_tut_ig3@", 100)
                                     SetEntityCoords(cache.ped, v.Coords.x, v.Coords.y - 1.0, v.Coords.z, 1, 0, 0, 1)
-                                    TaskPlayAnim(cache.ped, "anim@amb@clubhouse@tutorial@bkr_tut_ig3@",
-                                        "machinic_loop_mechandplayer", 8.0, 8.0, -1, 1, 0, 0, 0, 0)
+                                    TaskPlayAnim(cache.ped, "machinic_loop_mechandplayer", "machinic_loop_mechandplayer", 8.0, 8.0, -1, 1, 0, 0, 0, 0)
 
                                     FreezeEntityPosition(cache.ped, true)
                                     Wait(2000)
@@ -106,6 +120,7 @@ Citizen.CreateThread(function()
                                                     safesCooldown[k] = GetGameTimer() +
                                                         v.Cooldown *
                                                         1000 -- Update cooldown
+                                                    TriggerServerEvent('sharky_saferobbery:server:setSafeCooldown', k) -- Notify server to reset cooldown
                                                 end, reward)
                                             ClearPedTasks(cache.ped)
                                             FreezeEntityPosition(cache.ped, false)
@@ -114,6 +129,8 @@ Citizen.CreateThread(function()
                                         Notify(locale('crack_failed'))
                                         ClearPedTasks(cache.ped)
                                         FreezeEntityPosition(cache.ped, false)
+                                        safesCooldown[k] = GetGameTimer() + v.Cooldown * 1000 -- Start cooldown immediately on fail
+                                        TriggerServerEvent('sharky_saferobbery:server:setSafeCooldown', k) -- Notify server to set cooldown
                                     end
                                 else
                                     Notify(locale('safe_on_cooldown', v.Cooldown))
@@ -136,17 +153,23 @@ Citizen.CreateThread(function()
                         label = locale('crack_safe_target'),
                         onSelect = function()
                             local currentTime = GetGameTimer()
-                            local currentTime = GetGameTimer()
                             if safesCooldown[k] and currentTime < safesCooldown[k] then
                                 Notify(locale('safe_on_cooldown', math.ceil((safesCooldown[k] - currentTime) / 1000)))
                                 return
                             end
 
+                            local policeNotified = false
+
                             if v.RequiredItem then
                                 ESX.TriggerServerCallback('sharky_saferobbery:server:canRobSafe', function(canRob)
                                     if canRob then
                                         local RobberyCoords = vec3(v.Coords.x, v.Coords.y, v.Coords.z)
-                                        TriggerServerEvent('sharky_saferobbery:server:policeNotify', RobberyCoords)
+                                        
+                                        if not policeNotified then
+                                            TriggerServerEvent('sharky_saferobbery:server:policeNotify', RobberyCoords)
+                                            policeNotified = true
+                                        end
+
                                         lib.requestAnimDict("anim@amb@clubhouse@tutorial@bkr_tut_ig3@", 100)
                                         SetEntityCoords(cache.ped, v.Coords.x, v.Coords.y - 1.0, v.Coords.z, 1, 0, 0, 1)
                                         TaskPlayAnim(cache.ped, "anim@amb@clubhouse@tutorial@bkr_tut_ig3@",
@@ -174,6 +197,7 @@ Citizen.CreateThread(function()
                                                         safesCooldown[k] = GetGameTimer() +
                                                             v.Cooldown *
                                                             1000 -- Update cooldown
+                                                        TriggerServerEvent('sharky_saferobbery:server:setSafeCooldown', k) -- Notify server to reset cooldown
                                                     end, reward)
                                                 ClearPedTasks(cache.ped)
                                                 FreezeEntityPosition(cache.ped, false)
@@ -182,6 +206,8 @@ Citizen.CreateThread(function()
                                             Notify(locale('crack_failed'))
                                             ClearPedTasks(cache.ped)
                                             FreezeEntityPosition(cache.ped, false)
+                                            safesCooldown[k] = GetGameTimer() + v.Cooldown * 1000 -- Start cooldown immediately on fail
+                                            TriggerServerEvent('sharky_saferobbery:server:setSafeCooldown', k) -- Ensure the cooldown is set
                                         end
                                     else
                                         Notify(locale('safe_on_cooldown', v.Cooldown))
@@ -191,11 +217,15 @@ Citizen.CreateThread(function()
                                 ESX.TriggerServerCallback('sharky_saferobbery:server:canRobSafe', function(canRob)
                                     if canRob then
                                         local RobberyCoords = vec3(v.Coords.x, v.Coords.y, v.Coords.z)
-                                        TriggerServerEvent('sharky_saferobbery:server:policeNotify', RobberyCoords)
+                                        
+                                        if not policeNotified then
+                                            TriggerServerEvent('sharky_saferobbery:server:policeNotify', RobberyCoords)
+                                            policeNotified = true
+                                        end
+
                                         lib.requestAnimDict("anim@amb@clubhouse@tutorial@bkr_tut_ig3@", 100)
                                         SetEntityCoords(cache.ped, v.Coords.x, v.Coords.y - 1.0, v.Coords.z, 1, 0, 0, 1)
-                                        TaskPlayAnim(cache.ped, "anim@amb@clubhouse@tutorial@bkr_tut_ig3@",
-                                            "machinic_loop_mechandplayer", 8.0, 8.0, -1, 1, 0, 0, 0, 0)
+                                        TaskPlayAnim(cache.ped, "machinic_loop_mechandplayer", "machinic_loop_mechandplayer", 8.0, 8.0, -1, 1, 0, 0, 0, 0)
 
                                         FreezeEntityPosition(cache.ped, true)
                                         Wait(2000)
@@ -219,6 +249,7 @@ Citizen.CreateThread(function()
                                                         safesCooldown[k] = GetGameTimer() +
                                                             v.Cooldown *
                                                             1000 -- Update cooldown
+                                                        TriggerServerEvent('sharky_saferobbery:server:setSafeCooldown', k) -- Notify server to reset cooldown
                                                     end, reward)
                                                 ClearPedTasks(cache.ped)
                                                 FreezeEntityPosition(cache.ped, false)
@@ -227,6 +258,8 @@ Citizen.CreateThread(function()
                                             Notify(locale('crack_failed'))
                                             ClearPedTasks(cache.ped)
                                             FreezeEntityPosition(cache.ped, false)
+                                            safesCooldown[k] = GetGameTimer() + v.Cooldown * 1000 -- Start cooldown immediately on fail
+                                            TriggerServerEvent('sharky_saferobbery:server:setSafeCooldown', k) -- Ensure the cooldown is set
                                         end
                                     else
                                         Notify(locale('safe_on_cooldown', v.Cooldown))
@@ -234,7 +267,7 @@ Citizen.CreateThread(function()
                                 end, k)
                             end
                         end
-                    },
+                    }
                 },
             })
         end
