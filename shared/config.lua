@@ -2,11 +2,13 @@ Config = {}
 
 Config['locale'] = 'en'       -- language for the script
 Config['debug'] = false       -- enable debugging prints
-Config['target'] = false      -- enable target | or false to disable (ox_target)
-Config['textui'] =
-"esx"                         -- ESX.ShowHelpNotification | Use "custom" and write your own logic in Config['CustomTextUI']
+Config['target'] = true      -- enable target | or false to disable (ox_target)
+Config['textui'] = "esx"                         -- ESX.ShowHelpNotification | Use "custom" and write your own logic in Config['CustomTextUI']
+Config['Notify'] = "esx"      -- ESX or OX_LIB notify | Use "custom" and write your own logic in Config['CustomNotify']
 Config['minigame'] = "ox_lib" -- safelock or ox_lib for minigame
 Config['blackmoney'] = true   -- enable black money reward
+
+
 
 Config['jobs'] = {
     'police',
@@ -27,6 +29,25 @@ Config['Safes'] = {
         LootTime = 10,                                            -- time to loot the safe
         Cooldown = 60,                                            -- cooldown in seconds
         Blip = {
+            enable = false,
+            sprite = 303,
+            color = 1,
+            name = 'Safe',
+        }
+    },
+    {
+        Coords = vector4(265.8899, -782.6101, 54.2244, 154.5899), -- coords for the prop
+        Prop = 'prop_ld_int_safe_01',                             -- prop you want to spawn
+        RequiredItem = false,                                     -- item name or false
+        GiveBlackMoney = true,                                    -- give black money
+        Reward = {
+            min = 1000,                                           -- min reward
+            max = 2000,                                           -- max reward
+        },
+        Difficulty = { "easy", "easy", "medium" },                -- easy, medium, hard
+        LootTime = 10,                                            -- time to loot the safe
+        Cooldown = 60,                                            -- cooldown in seconds
+        Blip = {
             enable = true,
             sprite = 303,
             color = 1,
@@ -35,8 +56,6 @@ Config['Safes'] = {
     },
 }
 
-
-Config['Notify'] = "esx" -- ESX or OX_LIB notify | Use "custom" and write your own logic in Config['CustomNotify']
 
 Config['CustomNotify'] = function(message)
     TriggerEvent('chat:addMessage', {
