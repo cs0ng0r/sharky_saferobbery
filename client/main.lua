@@ -11,6 +11,7 @@ Citizen.CreateThread(function()
         local propEntity = CreateObject(GetHashKey(prop), v.Coords, true, false, false)
         SetEntityAsMissionEntity(propEntity, true, true)
         FreezeEntityPosition(propEntity, true)
+        SetEntityHeading(propEntity, v.Coords.w)
 
         DevPrint("Prop Spawn: " .. prop)
 
